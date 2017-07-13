@@ -66,6 +66,9 @@ echo "----- GITHUB -----"
 cd /root/Scripts/Abeebus
 git pull origin master
 cd --
+cd /root/Scripts/kali_update
+git pull origin master
+cd --
 cd /root/Scripts/EyeWitness
 git pull origin master
 cd --
