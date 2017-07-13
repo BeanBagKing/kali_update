@@ -1,16 +1,16 @@
 #!/bin/bash
 
-echo "-------------------------------"  
-echo " Current Version Info Follows: "  
-echo "-------------------------------"  
-lsb_release -i  
-lsb_release -r  
-lsb_release -d  
-lsb_release -c  
-printf "Kernal Version: ";uname -r  
-printf "Processor Type: ";uname -m  
-echo "------------------------------"  
-echo "     Performing updates:      "  
+echo "-------------------------------"
+echo " Current Version Info Follows: "
+echo "-------------------------------"
+lsb_release -i
+lsb_release -r
+lsb_release -d
+lsb_release -c
+printf "Kernal Version: ";uname -r
+printf "Processor Type: ";uname -m
+echo "------------------------------"
+echo "     Performing updates:      "
 echo "------------------------------"
 echo "----- CLEAN -----"
 apt clean
@@ -23,17 +23,17 @@ apt full-upgrade -y
 # I've had this break text rendering. This was fixed with 'apt-get install --reinstall fonts-cantarell'
 echo "----- AUTOREMOVE -----"
 apt autoremove -y
-echo "------------------------------"  
-echo " Device Version Info Follows: "  
-echo "------------------------------"  
-lsb_release -i  
-lsb_release -r  
-lsb_release -d  
-lsb_release -c  
-printf "Kernal Version: ";uname -r  
-printf "Processor Type: ";uname -m  
-echo "------------------------------"  
-echo "     Other Applications:      "  
+echo "------------------------------"
+echo " Device Version Info Follows: "
+echo "------------------------------"
+lsb_release -i
+lsb_release -r
+lsb_release -d
+lsb_release -c
+printf "Kernal Version: ";uname -r
+printf "Processor Type: ";uname -m
+echo "------------------------------"
+echo "     Other Applications:      "
 echo "------------------------------"
 echo "----- SNAP UPDATE -----"
 snap refresh
@@ -61,7 +61,7 @@ echo "----- PIP APPLICATIONS -----"
 pip install -U whatportis
 pip install -U pinggraph
 echo "----- GITHUB -----"
-# The following -should- grab updates from any github projects added by new_setup.sh. If you add more or remove these, fix them. 
+# The following -should- grab updates from any github projects added by new_setup.sh. If you add more or remove these, fix them.
 # Also, watch testssl since it doesn't use master and will likely change.
 cd /root/Scripts/Abeebus
 git pull origin master
