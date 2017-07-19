@@ -35,9 +35,9 @@ printf "Processor Type: ";uname -m
 echo "------------------------------"
 echo "     Other Applications:      "
 echo "------------------------------"
-echo "----- SNAP UPDATE -----"
-snap refresh
-# Not currently installed, but if it gets installed...
+#echo "----- SNAP UPDATE -----"
+## Uncomment this if you use snap
+#snap refresh
 echo "----- PIP -----"
 pip install --upgrade pip
 echo "----- WPSCAN -----"
@@ -46,9 +46,9 @@ echo "----- NIKTO -----"
 cd /usr/share/golismero/tools/nikto
 perl nikto.pl -update
 cd --
-echo "----- FRESHCLAM -----"
-# ClamAV now included with Kali, as long as it's here, lets update it.
-freshclam
+#echo "----- FRESHCLAM -----"
+## Uncomment this if you use ClamAV
+#freshclam
 #echo "----- NESSUS -----"
 ## Uncomment if you use Nessus
 ## Don't be running scans... Stop the service, wait a few to make sure, upgrade, and start the service.
@@ -57,9 +57,6 @@ freshclam
 #/opt/nessus/sbin/nessuscli update --all
 #sleep 3
 #service nessusd start
-echo "----- PIP APPLICATIONS -----"
-pip install -U whatportis
-pip install -U pinggraph
 echo "----- GITHUB -----"
 # The following -should- grab updates from any github projects added by new_setup.sh. If you add more or remove these, fix them.
 # Also, watch testssl since it doesn't use master and will likely change.
