@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Time on VM's is often off after I resume. If you don't need this, comment it out
+echo "----- UPDATING TIME -----"
+ntpdate time.nist.gov
+
 echo "-------------------------------"
 echo " Current Version Info Follows: "
 echo "-------------------------------"
