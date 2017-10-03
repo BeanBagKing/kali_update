@@ -98,8 +98,6 @@ cd /root/Scripts/Sublist3r
 git pull origin master
 cd --
 cd /root/Scripts/testssl
-git pull origin master
-cd --
 git pull origin 2.9dev
 cd --
 cd /root/Scripts/unix-privesc-check2
