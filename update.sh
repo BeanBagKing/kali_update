@@ -67,43 +67,48 @@ echo "----- GITHUB -----"
 cd /root/Scripts/Abeebus
 git pull origin master
 cd --
-cd /root/Scripts/Sublist3r
+cd /root/Scripts/DidierStevensSuite
 git pull origin master
 cd --
-cd /root/Scripts/kali_update
+cd /root/Scripts/Empire
 git pull origin master
 cd --
 cd /root/Scripts/EyeWitness
 git pull origin master
 cd --
-cd /root/Scripts/testssl
-git pull origin 2.9dev
-cd --
-cd /root/Scripts/Empire
-git pull origin master
-cd --
-cd /root/Scripts/Windows-Exploit-Suggester
-git pull origin master
-cd --
-cd /root/Scripts/mimipenguin
-git pull origin master
-cd --
 cd /root/Scripts/kali-tools
 git pull origin master
 cd --
-cd /root/Scripts/WPSeku
-git pull origin master
-cd --
-cd /root/Scripts/unix-privesc-check2
-git pull origin master
-cd --
-cd /root/Scripts/Linux_Exploit_Suggester
+cd /root/Scripts/kali_update
 git pull origin master
 cd --
 cd /root/Scripts/LinEnum
 git pull origin master
 cd --
+cd /root/Scripts/Linux_Exploit_Suggester
+git pull origin master
+cd --
+cd /root/Scripts/mimipenguin
+git pull origin master
+cd --
 cd /root/Scripts/PRET
+git pull origin master
+cd --
+cd /root/Scripts/Sublist3r
+git pull origin master
+cd --
+cd /root/Scripts/testssl
+git pull origin master
+cd --
+git pull origin 2.9dev
+cd --
+cd /root/Scripts/unix-privesc-check2
+git pull origin master
+cd --
+cd /root/Scripts/Windows-Exploit-Suggester
+git pull origin master
+cd --
+cd /root/Scripts/WPSeku
 git pull origin master
 cd --
 echo "----- FIN -----"
