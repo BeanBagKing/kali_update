@@ -109,4 +109,10 @@ cd --
 cd /root/Scripts/WPSeku
 git pull origin master
 cd --
+echo "----- REBOOT? -----"
+if [ -f /var/run/reboot-required ]; then
+  echo 'Reboot Required'
+else
+  echo 'Nothing Here'
+fi
 echo "----- FIN -----"
