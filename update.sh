@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Updated 24 Oct 2018
+# Updated 24 Oct 2018 (very minor change for lsb_release on 20 Jan 2025)
 # for for Kali 2018.3
 
 RED='\033[1;31m'
@@ -18,10 +18,10 @@ ntpdate time.nist.gov
 echo -e "${YEL}-------------------------------${NC}"
 echo -e "${YEL} Current Version Info Follows: "
 echo -e "${YEL}-------------------------------${NC}"
-lsb_release -i
-lsb_release -r
-lsb_release -d
-lsb_release -c
+lsb_release -i 2>/dev/null
+lsb_release -r 2>/dev/null
+lsb_release -d 2>/dev/null
+lsb_release -c 2>/dev/null
 printf "Kernal Version: ";uname -r
 printf "Processor Type: ";uname -m
 echo -e "${YEL}------------------------------${NC}"
