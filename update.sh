@@ -4,7 +4,9 @@
 #   20 Jan 2025 - very minor change for lsb_release 
 # 25 Jan 2025 - I still use this script all the time, but my focus has shifted to forensics and I don't use most of the pentesting stuff
 #               Therefore, I've cut almost all of that out, leaving all of the apt stuff, snap, and changing pip to pipx.
-#               Other minor changes include checks for root, ntpdate, and snap          
+#               Other minor changes include checks for root, ntpdate, and snap
+
+# sudo wget https://raw.githubusercontent.com/BeanBagKing/kali_update/refs/heads/master/update.sh -O /usr/bin/update.sh
 
 RED='\033[1;31m'
 GRN='\033[1;32m'
