@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Updated 24 Oct 2018 (very minor change for lsb_release on 20 Jan 2025)
-# for for Kali 2018.3
+# 24 Oct 2018 - Kali 2018.3
+#   20 Jan 2025 - very minor change for lsb_release 
+# 25 Jan 2025 - I still use this script all the time, but my focus has shifted to forensics and I don't use most of the pentesting stuff
+#               Therefore, I've cut almost all of that out, leaving all of the apt stuff, snap, and changing pip to pipx.
+#               Other minor changes include checks for root, ntpdate, and snap          
 
 RED='\033[1;31m'
 GRN='\033[1;32m'
@@ -9,12 +12,22 @@ YEL='\033[1;33m'
 BLU='\033[1;34m'
 NC='\033[0m' # No Color
 
-#echo -e "${YEL}${YEL}--${NC}Upgrading and installing useful PIP stuff"
+# Check if the script is run as root or with sudo
+if [[ $EUID -ne 0 ]]; then
+  echo -e "${YEL}---------------------------------------${NC}"
+  echo -e "${YEL}script must be run as root or with sudo${NC}"
+  echo -e "${YEL}---------------------------------------${NC}"
+  exit 1
+fi
 
 # Time on VM's can be incorrect after I resume. If you don't need this, comment it out
 echo -e "${YEL}----- UPDATING TIME -----${NC}"
-ntpdate time.nist.gov
-
+if ! command -v ntpdate 2>&1 >/dev/null
+then
+  echo -e "${RED}ntpdate not found, skipping${NC}"
+else
+  ntpdate time.nist.gov
+fi
 echo -e "${YEL}-------------------------------${NC}"
 echo -e "${YEL} Current Version Info Follows: "
 echo -e "${YEL}-------------------------------${NC}"
@@ -41,73 +54,34 @@ apt autoremove -y
 echo -e "${YEL}------------------------------${NC}"
 echo -e "${YEL} Device Version Info Follows: "
 echo -e "${YEL}------------------------------${NC}"
-lsb_release -i
-lsb_release -r
-lsb_release -d
-lsb_release -c
+lsb_release -i 2>/dev/null
+lsb_release -r 2>/dev/null
+lsb_release -d 2>/dev/null
+lsb_release -c 2>/dev/null
 printf "Kernal Version: ";uname -r
 printf "Processor Type: ";uname -m
 echo -e "${YEL}------------------------------${NC}"
 echo -e "${YEL}     Other Applications:      "
 echo -e "${YEL}------------------------------${NC}"
-#echo -e "${YEL}----- SNAP UPDATE -----${NC}"
-## Uncomment this if you use snap
-#snap refresh
-echo -e "${YEL}----- PIP -----${NC}"
-pip install --upgrade pip
-echo -e "${YEL}----- WPSCAN -----${NC}"
-wpscan --update
-echo -e "${YEL}----- NIKTO -----${NC}"
-cd /usr/share/golismero/tools/nikto
-perl nikto.pl -update
-cd --
-#echo -e "${YEL}----- FRESHCLAM -----${NC}"
-## Uncomment this if you use ClamAV
-#freshclam
-#echo -e "${YEL}----- NESSUS -----${NC}"
-## Uncomment if you use Nessus
-## Don't be running scans... Stop the service, wait a few to make sure, upgrade, and start the service.
-#service nessusd stop
-#sleep 3
-#/opt/nessus/sbin/nessuscli update --all
-#sleep 3
-#service nessusd start
-echo -e "${YEL}----- GITHUB -----${NC}"
-# The following -should- grab updates from any github projects added by new_setup.sh. If you add more or remove these, fix them.
-# Also, watch testssl since it doesn't use master and will likely change.
-cd /root/Scripts/Abeebus
-git pull origin master
-cd --
-cd /root/Scripts/Rebeebus
-git pull origin master
-cd --
-cd /root/Scripts/DidierStevensSuite
-git pull origin master
-cd --
-cd /root/Scripts/kali-tools
-git pull origin master
-cd --
-cd /root/Scripts/kali_update
-git pull origin master
-cd --
-cd /root/Scripts/LinEnum
-git pull origin master
-cd --
-cd /root/Scripts/Linux_Exploit_Suggester
-git pull origin master
-cd --
-cd /root/Scripts/mimipenguin
-git pull origin master
-cd --
-cd /root/Scripts/PRET
-git pull origin master
-cd --
-cd /root/Scripts/unix-privesc-check2
-git pull origin master
-cd --
-cd /root/Scripts/Windows-Exploit-Suggester
-git pull origin master
-cd --
+echo -e "${YEL}----- SNAP UPDATE -----${NC}"
+if ! command -v snap 2>&1 >/dev/null
+then
+  echo -e "${RED}snap not found, skipping${NC}"
+else
+  snap refresh
+fi
+echo -e "${YEL}----- PIPX -----${NC}"
+if ! command -v pipx 2>&1 >/dev/null
+then
+  echo -e "${RED}pipx not found, skipping${NC}"
+else
+  pipx upgrade-all
+fi
+# echo -e "${YEL}----- GITHUB -----${NC}"
+# Leaving this in here for future reference. Also, watch testssl.sh since it doesn't use master and will likely change.
+# cd /root/Scripts/Abeebus
+# git pull origin master
+# cd --
 echo -e "${YEL}----- REBOOT? -----${NC}"
 if [ -f /var/run/reboot-required ]; then
   echo -e "${RED}Reboot Required${NC}"
